@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#162d29">
+  <title>Tempo — команда и время</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Tempo, главная"><span class="brand-mark">t</span>tempo<span class="brand-dot">.</span></a>
+    <div class="workspace"><span class="workspace-icon">S</span><div>Studio workspace<small>Учёт рабочего времени</small></div></div>
+    <p class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+    <nav aria-label="Разделы"><a href="#overview" class="nav-active"><span aria-hidden="true">◫</span> Обзор</a><a href="/employee"><span aria-hidden="true">◷</span> Мой трекер</a><a href="#team"><span aria-hidden="true">◎</span> Команда</a><a href="#reports"><span aria-hidden="true">▤</span> Отчёты</a></nav>
+    <div class="sidebar-note"><span class="live-dot"></span> Всё остаётся у вас<p>Время и задачи сохраняются<br>на этом компьютере.</p></div>
+    <div class="sidebar-footer"><span class="avatar small-avatar">SW</span><div>Studio workspace<small>Локальная версия · UTC</small></div></div>
+  </aside>
+  <div class="shell">
+    <header class="topbar"><div><span class="breadcrumb">Workspace</span><span class="slash">/</span>Обзор команды</div><span class="timezone"><span class="live-dot"></span> Рабочее время · UTC</span></header>
+    <main id="overview">
+      <section class="page-heading"><div><p class="eyebrow">СОБЕРИТЕ ДЕНЬ В ОДНОМ МЕСТЕ</p><h1>Время за работой<span>.</span></h1><p class="subtitle">Меньше отвлечений. Больше ясности, над чем работает команда.</p></div><a class="button light-button" href="#employee-name">＋ Добавить сотрудника</a></section>
+      <div id="message" role="status" aria-live="polite"></div>
+      <section class="metrics" aria-label="Обзор">
+        <article class="metric primary-metric"><div class="metric-label">Время за выбранный период <span aria-hidden="true">↗</span></div><strong id="total">00:00:00</strong><span id="metric-period">Загружаем отчёт…</span><div class="metric-art" aria-hidden="true"></div></article>
+        <article class="metric"><div class="metric-label">Сейчас в работе <span class="metric-icon" aria-hidden="true">◷</span></div><strong id="active-count">—</strong><span>активных таймеров в команде</span></article>
+        <article class="metric"><div class="metric-label">Команда <span class="metric-icon" aria-hidden="true">◎</span></div><strong id="team-count">—</strong><span>сотрудников в пространстве</span></article>
+      </section>
+      <section class="panel" id="team" aria-labelledby="team-title">
+        <div class="section-head"><div><h2 id="team-title">Команда в фокусе</h2><p>Запустите задачу и возвращайтесь к главному.</p></div><span class="badge"><span class="live-dot"></span> Таймеры сохраняются</span></div>
+        <form id="employee-form" class="add-form"><label for="employee-name" class="sr-only">Имя сотрудника</label><input id="employee-name" placeholder="Имя нового сотрудника" maxlength="100" required autocomplete="off"><button type="submit">Добавить <span aria-hidden="true">＋</span></button></form>
+        <div id="employees" aria-busy="true"><p class="empty">Загружаем команду…</p></div>
+      </section>
+      <section class="panel report-panel" id="reports" aria-labelledby="reports-title">
+        <div class="section-head"><div><h2 id="reports-title">Каждый час на своём месте</h2><p>Задачи и итоги за нужный период.</p></div><button id="refresh-report" class="text-button" type="button">↻ Обновить</button></div>
+        <div class="report-toolbar"><div class="segmented" aria-label="Быстрый выбор периода"><button type="button" data-period="today" aria-pressed="false">Сегодня</button><button type="button" data-period="week" aria-pressed="true">Неделя</button><button type="button" data-period="month" aria-pressed="false">Месяц</button></div><label class="employee-filter"><span class="sr-only">Сотрудник в отчёте</span><select id="employee-filter"><option value="">Вся команда</option></select></label></div>
+        <form id="report-form" class="filters"><label>С даты<input type="date" id="date-from" required></label><span class="date-separator" aria-hidden="true">—</span><label>По дату включительно<input type="date" id="date-to" required></label><button type="submit" class="light-button">Применить</button><span class="period-help">Границы суток и время — UTC</span></form>
+        <div id="totals" class="totals"></div>
+        <div class="table-wrap"><table><thead><tr><th>Сотрудник / задача</th><th>Начало · UTC</th><th>Статус</th><th class="duration-heading">В периоде</th></tr></thead><tbody id="entries"><tr><td colspan="4" class="empty">Загружаем записи…</td></tr></tbody></table></div>
+        <div class="report-footer"><span id="entry-count">—</span><span id="report-note">Активные задачи учитываются на момент обновления</span></div>
+      </section>
+      <footer class="page-footer"><span>tempo<span class="brand-dot">.</span> <span class="footer-divider">/</span> Хорошая работа начинается с фокуса.</span><span>Python + SQLite · без внешних сервисов</span></footer>
+    </main>
+  </div>
+</body>
+</html>

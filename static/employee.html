@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#162d29">
+  <title>Мой трекер — Tempo</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/employee.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Tempo, главная"><span class="brand-mark">t</span>tempo<span class="brand-dot">.</span></a>
+    <div class="workspace"><span class="workspace-icon">S</span><div>Studio workspace<small>Учёт рабочего времени</small></div></div>
+    <p class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+    <nav aria-label="Разделы"><a href="/"><span aria-hidden="true">◫</span> Обзор</a><a href="/employee" class="nav-active" aria-current="page"><span aria-hidden="true">◷</span> Мой трекер</a><a href="/#team"><span aria-hidden="true">◎</span> Команда</a><a href="/#reports"><span aria-hidden="true">▤</span> Отчёты</a></nav>
+    <div class="sidebar-note"><span class="live-dot"></span> Одно рабочее пространство<p>Ваш таймер и обзор команды<br>используют общие данные.</p></div>
+    <div class="sidebar-footer"><span class="avatar small-avatar">SW</span><div>Studio workspace<small>Локальная версия · UTC</small></div></div>
+  </aside>
+  <div class="shell">
+    <header class="topbar"><div><a href="/" class="breadcrumb">Workspace</a><span class="slash">/</span>Мой трекер</div><a href="/" class="breadcrumb">Обзор команды ↗</a></header>
+    <main class="employee-main">
+      <section class="page-heading"><div><p class="eyebrow">ОДНА ЗАДАЧА. ПОЛНЫЙ ФОКУС.</p><h1>Ваш рабочий ритм<span>.</span></h1><p class="subtitle">Запускайте задачи здесь. Команда увидит время в общем обзоре.</p></div></section>
+      <div class="identity-picker"><label for="person-select">Сотрудник<select id="person-select" disabled><option value="">Загружаем команду…</option></select></label><p>Демонстрационный выбор сотрудника, без авторизации.</p></div>
+      <div id="message" role="status" aria-live="polite"></div>
+      <section id="choose-person" class="panel chooser-panel"><p class="empty"><strong>Выберите сотрудника</strong>Откройте свой трекер через список выше или карточку в обзоре команды.</p></section>
+      <div id="personal-workspace" hidden>
+        <section class="focus-card" aria-labelledby="focus-title">
+          <div class="focus-top"><span class="focus-person" id="person-name"></span><span id="timer-status" class="badge">Готов к работе</span></div>
+          <p class="eyebrow" id="focus-title">ТЕКУЩАЯ ЗАДАЧА</p>
+          <div id="personal-timer" class="personal-timer" role="timer" aria-label="Время текущей задачи">00:00:00</div>
+          <form id="timer-form"><label for="task-description" class="sr-only">Описание задачи</label><input id="task-description" placeholder="На чём сфокусируемся?" maxlength="500" required autocomplete="off"><button id="timer-action" type="submit">▷ Начать задачу</button></form>
+          <p class="focus-hint" id="focus-hint">Таймер продолжит работать, если закрыть вкладку.</p>
+        </section>
+        <section class="panel report-panel" aria-labelledby="history-title">
+          <div class="section-head"><div><h2 id="history-title">Ваша история задач</h2><p>Только выбранный сотрудник. Все даты и время — UTC.</p></div><button id="personal-refresh" class="text-button" type="button">↻ Обновить</button></div>
+          <div class="personal-report-controls"><div class="segmented" aria-label="Период личного отчёта"><button type="button" data-range="today" aria-pressed="true">Сегодня</button><button type="button" data-range="week" aria-pressed="false">Неделя</button><button type="button" data-range="month" aria-pressed="false">Месяц</button></div><div class="personal-total">Всего за период <strong id="personal-total">00:00:00</strong></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Задача</th><th>Начало · UTC</th><th>Статус</th><th>В периоде</th></tr></thead><tbody id="personal-entries"></tbody></table></div>
+          <div class="report-footer"><span id="personal-entry-count">—</span><span id="personal-report-note">С учётом активных задач</span></div>
+        </section>
+      </div>
+      <footer class="page-footer"><span>tempo<span class="brand-dot">.</span> <span class="footer-divider">/</span> Хорошая работа начинается с фокуса.</span><span>Общие таймеры · общие отчёты</span></footer>
+    </main>
+  </div>
+</body>
+</html>
